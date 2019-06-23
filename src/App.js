@@ -3,6 +3,7 @@ import './App.css';
 import { API, graphqlOperation } from 'aws-amplify';
 
 import * as subscriptions from './graphql/subscriptions';
+import { withAuthenticator } from 'aws-amplify-react';
 
 const allNotes = `
   query list {
@@ -50,7 +51,7 @@ class App extends React.Component {
             return i;
           }
         }), newNote]
-        console.log(notes, "!!!!!!!!!!!!!!!!!!!!!!!");
+
         this.setState({
           notes
         })
@@ -121,4 +122,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withAuthenticator(App);

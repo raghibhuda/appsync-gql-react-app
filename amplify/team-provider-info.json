@@ -9,6 +9,11 @@
             "UnauthRoleName": "gql-react-client-notes-20190623130635-unauthRole",
             "StackName": "gql-react-client-notes-20190623130635",
             "StackId": "arn:aws:cloudformation:us-east-2:621581270990:stack/gql-react-client-notes-20190623130635/70f64ed0-9585-11e9-9bcd-02e473ddfb1a"
+        },
+        "categories": {
+            "auth": {
+                "gqlreactclient4c3d4c06": {}
+            }
         }
     }
 }
