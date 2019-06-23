@@ -1,0 +1,14 @@
+{
+    "notes": {
+        "awscloudformation": {
+            "AuthRoleName": "gql-react-client-notes-20190623130635-authRole",
+            "UnauthRoleArn": "arn:aws:iam::621581270990:role/gql-react-client-notes-20190623130635-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::621581270990:role/gql-react-client-notes-20190623130635-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "gql-react-client-notes-20190623130635-deployment",
+            "UnauthRoleName": "gql-react-client-notes-20190623130635-unauthRole",
+            "StackName": "gql-react-client-notes-20190623130635",
+            "StackId": "arn:aws:cloudformation:us-east-2:621581270990:stack/gql-react-client-notes-20190623130635/70f64ed0-9585-11e9-9bcd-02e473ddfb1a"
+        }
+    }
+}
