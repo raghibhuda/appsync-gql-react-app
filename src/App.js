@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import { API, graphqlOperation } from 'aws-amplify';
 
+import * as subscriptions from './graphql/subscriptions';
+
 const allNotes = `
   query list {
     listNotess{
@@ -37,6 +39,26 @@ class App extends React.Component {
     this.setState({
       notes: data.data.listNotess.items
     })
+
+    API.graphql(
+      graphqlOperation(subscriptions.onCreateNotes)
+    ).subscribe({
+      next: (noteData) => {
+        const newNote = noteData.value.data.onCreateNotes;
+        const notes = [...this.state.notes.filter((i) => {
+          if ((i.name !== newNote.name) && (i.description !== newNote.description)) {
+            return i;
+          }
+        }), newNote]
+        console.log(notes, "!!!!!!!!!!!!!!!!!!!!!!!");
+        this.setState({
+          notes
+        })
+        console.log(noteData)
+      }
+    });
+
+
     console.log(this.state.notes)
   }
 
@@ -55,21 +77,24 @@ class App extends React.Component {
 
   createNote = async (e) => {
     e.preventDefault();
-    const newNote  =  {
+    const newNote = {
       name: this.state.name,
-      description:this.state.description
+      description: this.state.description
     }
 
-    try{
-      const notes = [...this.state.notes,newNote];
+    try {
+      const notes = [...this.state.notes, newNote];
+
+      await API.graphql(graphqlOperation(createNoteMutation, newNote));
+      console.log('Successfully added ');
       this.setState({
         notes,
-        name:'',
-        description:''
+        name: '',
+        description: ''
       })
-      await API.graphql(graphqlOperation(createNoteMutation,newNote));
-      console.log('Successfully added ');
-    }catch(error){
+      console.log(notes, "================");
+      console.log(this.state.name, "names================");
+    } catch (error) {
       console.log(error)
     }
 
